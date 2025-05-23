@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Your Unique Bio Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .cta-button {
+      @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300;
+    }
+    .template-card:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/10 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <h1 class="font-bold text-xl">Bio Page</h1>
+      <nav class="space-x-4">
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#features" class="hover:underline">Features</a>
+        <a href="#templates" class="hover:underline">Templates</a>
+        <a href="#form" class="hover:underline">Get Yours</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div id="tsparticles" class="absolute inset-0 -z-10"></div>
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4" data-aos="zoom-in">Create Your Unique Bio Page</h1>
+    <p class="text-lg md:text-xl mb-6" data-aos="fade-up">Animated, aesthetic, and permanent for just ₹399</p>
+    <a href="#form" class="cta-button" data-aos="fade-up">Get Yours for ₹399</a>
+  </section>
+
+  <!-- About Section -->
+  <section class="px-6 py-16 max-w-4xl mx-auto" id="about" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-4">About</h2>
+    <p class="text-lg leading-relaxed">We help creators, influencers, and freelancers showcase their identity through a beautiful, animated, and unique bio page. Hosted on GitHub, live forever, without monthly fees.</p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="bg-gray-900 px-6 py-16" id="features" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-center mb-10">Features</h2>
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <li class="bg-gray-800 p-6 rounded-xl shadow-lg">✨ Fully responsive, animated UI</li>
+      <li class="bg-gray-800 p-6 rounded-xl shadow-lg">🔗 Custom URL via subdomain</li>
+      <li class="bg-gray-800 p-6 rounded-xl shadow-lg">🌐 GitHub hosted, live forever</li>
+    </ul>
+  </section>
+
+  <!-- Templates Section -->
+  <section class="px-6 py-16" id="templates" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-center mb-10">Templates</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="template-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
+        <img src="template1.png" alt="Template 1 Preview" class="rounded mb-4" />
+        <h3 class="text-xl font-semibold">Neon Style</h3>
+        <a href="template1-preview.html" target="_blank" class="text-pink-400 underline">Preview</a>
+      </div>
+      <div class="template-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
+        <img src="template2.png" alt="Template 2 Preview" class="rounded mb-4" />
+        <h3 class="text-xl font-semibold">Aurora Style</h3>
+        <a href="template2-preview.html" target="_blank" class="text-pink-400 underline">Preview</a>
+      </div>
+      <div class="template-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
+        <img src="template3.png" alt="Template 3 Preview" class="rounded mb-4" />
+        <h3 class="text-xl font-semibold">Minimal Dark</h3>
+        <a href="template3-preview.html" target="_blank" class="text-pink-400 underline">Preview</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="bg-gray-900 px-6 py-16 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-6">Pricing</h2>
+    <p class="text-2xl">Only ₹399 for lifetime hosting and delivery</p>
+    <p class="text-md mt-2">Secure delivery within 24 hours</p>
+  </section>
+
+  <!-- Form / CTA Section -->
+  <section class="px-6 py-16 max-w-xl mx-auto" id="form" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-center mb-8">Get Your Bio Page</h2>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLScustomformURL/formResponse" target="_blank" class="space-y-4">
+      <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded-lg bg-gray-800 text-white" />
+      <textarea name="bio" placeholder="Short Bio" required class="w-full p-3 rounded-lg bg-gray-800 text-white"></textarea>
+      <input type="text" name="socials" placeholder="Social Media Links" required class="w-full p-3 rounded-lg bg-gray-800 text-white" />
+      <input type="text" name="username" placeholder="Preferred Username" required class="w-full p-3 rounded-lg bg-gray-800 text-white" />
+      <select name="template" class="w-full p-3 rounded-lg bg-gray-800 text-white">
+        <option value="template1">Neon Style</option>
+        <option value="template2">Aurora Style</option>
+        <option value="template3">Minimal Dark</option>
+      </select>
+      <button type="submit" class="cta-button w-full">Submit & Pay</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 px-6 py-10 text-center text-sm" data-aos="fade-up">
+    <p>Contact: <a href="mailto:karan@example.com" class="text-pink-400 underline">karan@example.com</a></p>
+    <p>Follow us: <a href="https://instagram.com/karanbio" class="text-pink-400 underline">@karanbio</a></p>
+    <small class="block mt-4">&copy; 2025 Karan’s Bio Pages. All rights reserved.</small>
+  </footer>
+
+  <script>
+    AOS.init();
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        move: { enable: true, speed: 1 }
+      }
+    });
+  </script>
+</body>
+</html>
 
