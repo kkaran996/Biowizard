@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pastel Style Bio Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fd9ab2, #b6f6ff, #ee7eff);
+      background-size: 400% 400%;
+      animation: pastelBG 20s ease infinite;
+    }
+
+    @keyframes pastelBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .pfp-border {
+      padding: 4px;
+      background: linear-gradient(135deg, #f8bbd0, #b2ebf2, #d1c4e9);
+      border-radius: 9999px;
+      display: inline-block;
+    }
+
+    .pfp-border img {
+      border-radius: 9999px;
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center min-h-screen font-sans text-[#4c4c4c]">
+
+  <div class="rounded-3xl sunset-card p-8 max-w-sm w-full text-center shadow-lg sunset-card bg-white/50">
+    <div class="pfp-border mx-auto mb-6">
+      <img src="https://i.pravatar.cc/96" alt="Profile Picture" />
+    </div>
+    <h3 class="text-3xl font-bold mb-2">Pastel Style</h3>
+    <p class="italic mb-8 text-[#6b6b6b]">
+      Soft pastel color scheme
+    </p>
+    <div class="flex flex-col space-y-3 mb-10">
+      <a href="#" class="bg-pink-200 hover:bg-pink-300 text-[#4c4c4c] font-semibold py-2 rounded-full transition duration-300 w-full">Instagram</a>
+      <a href="#" class="bg-purple-200 hover:bg-purple-300 text-[#4c4c4c] font-semibold py-2 rounded-full transition duration-300 w-full">Twitter</a>
+      <a href="#" class="bg-blue-200 hover:bg-blue-300 text-[#4c4c4c] font-semibold py-2 rounded-full transition duration-300 w-full">LinkedIn</a>
+    </div>
+    <footer class="text-sm text-[#8e8e8e] italic select-none">
+      Powered by BioWizard
+    </footer>
+  </div>
+
+</body>
+</html>

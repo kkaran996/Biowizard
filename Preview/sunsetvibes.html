@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sunset Style Bio Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    body {
+      background: url('https://images.pexels.com/photos/417211/pexels-photo-417211.jpeg?cs=srgb&dl=beach-clouds-coast-417211.jpg&fm=jpg') no-repeat center center/cover;
+    }
+
+    .sunset-card {
+      backdrop-filter: blur(16px);
+      background-color: rgba(255, 94, 0, 0.1); /* soft transparent bg */
+    }
+
+    .pfp-border {
+      padding: 4px;
+      background: linear-gradient(135deg, #ff9e00, #ff6a00, #ffd700);
+      border-radius: 9999px;
+      display: inline-block;
+    }
+
+    .pfp-border img {
+      border-radius: 9999px;
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      display: block;
+      background-color: #1f1f1f;
+    }
+
+    #tsparticles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center min-h-screen p-5 font-sans relative overflow-hidden text-white">
+
+  <div id="tsparticles"></div>
+
+  <div class="sunset-card rounded-3xl shadow-xl p-8 max-w-sm w-full text-center z-10 border border-orange-400">
+    <div class="pfp-border mx-auto mb-6">
+      <img src="https://i.pravatar.cc/96" alt="Profile Picture" />
+    </div>
+    <h3 class="text-3xl font-bold mb-2 text-yellow-300 drop-shadow">Sunset Style</h3>
+    <p class="italic text-orange-200 mb-8 leading-relaxed">Warm sunset color palette</p>
+    
+    <div class="flex flex-col space-y-3 mb-10">
+      <a href="#" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+        Instagram
+      </a>
+      <a href="#" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+        Twitter
+      </a>
+      <a href="#" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+        LinkedIn
+      </a>
+    </div>
+
+    <footer class="italic text-orange-300 text-sm">
+      Powered by BioWizard
+    </footer>
+  </div>
+
+  <script>
+    tsParticles.load("tsparticles", {
+      fullScreen: false,
+      fpsLimit: 60,
+      particles: {
+        number: { value: 60, density: { enable: true, area: 900 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.3,
+          random: true,
+        },
+        size: {
+          value: 2,
+          random: true,
+        },
+        move: {
+          enable: true,
+          speed: 0.6,
+          direction: "top",
+          outModes: "out"
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+
+</body>
+</html>

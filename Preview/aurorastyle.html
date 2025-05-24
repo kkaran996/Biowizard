@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Style Bio Card with Animated Particles & Circular Border</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    @keyframes auroraGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .aurora-bg {
+      background: linear-gradient(270deg, #0b3d91, #00ffc8, #2e8bff, #0b3d91);
+      background-size: 800% 800%;
+      animation: auroraGradient 15s ease infinite;
+    }
+    .neon-text {
+      text-shadow:
+        0 0 5px #00ffc8,
+        0 0 10px #00ffc8,
+        0 0 20px #00ffc8;
+    }
+
+    /* Circular gradient border using background + padding + border-radius */
+    .pfp-gradient-border {
+      display: inline-block;
+      border-radius: 50%;
+      padding: 4px; /* Border thickness */
+      background: linear-gradient(45deg, #7df9ff, #00ffc8, #2e8bff, #7df9ff);
+      box-shadow: 0 0 12px rgba(0, 255, 200, 0.5);
+    }
+    .pfp-gradient-border img {
+      display: block;
+      border-radius: 50%;
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      background: #0a1a2a; /* fallback bg behind image for smooth edges */
+    }
+
+    #tsparticles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: #0a1a2a;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center min-h-screen p-5 text-[#a3fff9] font-sans relative overflow-hidden">
+
+  <div id="tsparticles"></div>
+
+  <div class="aurora-bg rounded-3xl shadow-[0_0_15px_rgba(0,255,200,0.6)] p-8 max-w-sm w-full text-center transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(0,255,200,0.9)] z-10">
+    <div class="pfp-gradient-border mx-auto mb-6">
+      <img src="https://i.pravatar.cc/96" alt="Profile Picture" />
+    </div>
+    <h3 class="text-3xl font-extrabold mb-2 neon-text">Aurora Style</h3>
+    <p class="italic text-[#b2fefa] mb-8 leading-relaxed">
+      Northern lights inspired gradient effects to mesmerize your visitors.
+    </p>
+    <div class="flex flex-col space-y-3 mb-10">
+      <a href="#" class="bg-[#00ffc8] bg-opacity-20 hover:bg-opacity-90 text-[#007f66] font-semibold py-2 rounded-full shadow-[0_0_8px_rgba(0,255,200,0.4)] hover:shadow-[0_0_15px_rgba(0,255,200,0.9)] transition duration-300">
+        Instagram
+      </a>
+      <a href="#" class="bg-[#00ffc8] bg-opacity-20 hover:bg-opacity-90 text-[#007f66] font-semibold py-2 rounded-full shadow-[0_0_8px_rgba(0,255,200,0.4)] hover:shadow-[0_0_15px_rgba(0,255,200,0.9)] transition duration-300">
+        Twitter
+      </a>
+      <a href="#" class="bg-[#00ffc8] bg-opacity-20 hover:bg-opacity-90 text-[#007f66] font-semibold py-2 rounded-full shadow-[0_0_8px_rgba(0,255,200,0.4)] hover:shadow-[0_0_15px_rgba(0,255,200,0.9)] transition duration-300">
+        LinkedIn
+      </a>
+    </div>
+    <footer class="italic text-[#66ccc0] select-none text-sm">
+      Powered by BioWizard
+    </footer>
+  </div>
+
+  <script>
+    tsParticles.load("tsparticles", {
+      fullScreen: false,
+      fpsLimit: 60,
+      particles: {
+        number: { value: 60, density: { enable: true, area: 900 } },
+        color: { value: ["#00ffc8", "#2e8bff", "#7df9ff"] },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.6,
+          random: { enable: true, minimumValue: 0.3 },
+          anim: { enable: true, speed: 1.5, opacity_min: 0.2, sync: false }
+        },
+        size: {
+          value: 3,
+          random: { enable: true, minimumValue: 1 },
+          anim: { enable: true, speed: 2, size_min: 1, sync: false }
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "top",
+          random: false,
+          straight: false,
+          outModes: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "bubble" },
+          onClick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          bubble: { distance: 120, size: 6, duration: 2, opacity: 0.8 },
+          push: { quantity: 4 }
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+
+</body>
+</html>

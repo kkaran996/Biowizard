@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Dark Bio Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Shimmer animation */
+    .shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shimmer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.06), transparent);
+      animation: shimmer 2.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -150%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    /* Link animation */
+    .animate-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .animate-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    .animate-link:hover::after {
+      width: 100%;
+    }
+
+    /* Particles canvas */
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen px-4">
+
+  <div id="tsparticles"></div>
+
+  <div class="bg-[#1a1a1a] shimmer rounded-2xl p-8 max-w-sm w-full shadow-xl">
+    <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Jane" alt="Profile"
+         class="w-24 h-24 rounded-full mx-auto border-4 border-white/10 mb-4 shadow-sm" />
+    <h2 class="text-white text-center text-2xl font-semibold mb-1">Minimal Dark</h2>
+    <p class="text-gray-400 text-center mb-6 text-sm">Clean, elegant and professional</p>
+
+    <div class="flex flex-col gap-3 mb-4">
+      <a href="#" class="text-white bg-gray-800 hover:bg-white hover:text-black transition rounded-lg py-2 px-4 text-center animate-link">GitHub</a>
+      <a href="#" class="text-white bg-gray-800 hover:bg-white hover:text-black transition rounded-lg py-2 px-4 text-center animate-link">LinkedIn</a>
+      <a href="#" class="text-white bg-gray-800 hover:bg-white hover:text-black transition rounded-lg py-2 px-4 text-center animate-link">Portfolio</a>
+    </div>
+
+    <p class="text-gray-600 text-xs text-center">Made with ❤️ by BioWizard</p>
+  </div>
+
+  <script>
+    tsParticles.load("tsparticles", {
+      background: { color: "#0d0d0d" },
+      fpsLimit: 60,
+      particles: {
+        number: { value: 50 },
+        color: { value: "#ffffff" },
+        opacity: {
+          value: 0.2,
+          random: true
+        },
+        size: {
+          value: 2,
+          random: { enable: true, minimumValue: 1 }
+        },
+        move: {
+          enable: true,
+          speed: 0.6,
+          direction: "none",
+          outModes: "out"
+        },
+        links: {
+          enable: false
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+
+</body>
+</html>

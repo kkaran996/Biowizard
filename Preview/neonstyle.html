@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neon Style Animated Bio Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f0f0f;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      overflow-x: hidden;  /* overflow x hidden to prevent horizontal scroll */
+      color: #eee;
+    }
+
+    .wrapper {
+      max-width: 420px; /* card width + padding */
+      width: 100%;
+      padding: 0 20px;  /* 20px padding from both sides */
+      box-sizing: border-box;
+    }
+
+    /* Neon glow pulse border */
+    .neon-glow {
+      border-radius: 24px;
+      background: linear-gradient(45deg, #ff00ff, #8000ff, #00ffff);
+      padding: 2px; /* border thickness */
+      animation: neonBorderPulse 3s ease-in-out infinite alternate;
+      box-shadow:
+        0 0 6px #ff00ff,
+        0 0 12px #ff00ff,
+        0 0 20px #8000ff,
+        0 0 30px #8000ff,
+        0 0 40px #00ffff,
+        0 0 50px #00ffff;
+    }
+
+    @keyframes neonBorderPulse {
+      0% {
+        filter: brightness(1);
+        box-shadow:
+          0 0 6px #ff00ff,
+          0 0 12px #ff00ff,
+          0 0 20px #8000ff,
+          0 0 30px #8000ff,
+          0 0 40px #00ffff,
+          0 0 50px #00ffff;
+      }
+      100% {
+        filter: brightness(1.3);
+        box-shadow:
+          0 0 12px #ff33ff,
+          0 0 20px #ff33ff,
+          0 0 30px #9933ff,
+          0 0 40px #9933ff,
+          0 0 50px #33ffff,
+          0 0 70px #33ffff;
+      }
+    }
+
+    /* Inner card */
+    .card-inner {
+      background-color: #111111cc;
+      border-radius: 22px;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      box-shadow:
+        inset 0 0 15px #ff00ff88,
+        inset 0 0 25px #8000ff88,
+        0 0 15px #ff00ffaa;
+    }
+
+    /* Profile picture */
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #ff33ff;
+      box-shadow:
+        0 0 10px #ff33ff,
+        0 0 20px #8000ff;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      transition: transform 0.3s ease;
+    }
+    .profile-pic:hover {
+      transform: scale(1.1);
+      box-shadow:
+        0 0 15px #ff66ff,
+        0 0 30px #aa66ff;
+    }
+
+    /* Neon animated text flicker */
+    .neon-text {
+      color: #ff33ff;
+      font-weight: 700;
+      font-size: 2rem;
+      text-shadow:
+        0 0 2px #ff33ff,
+        0 0 6px #ff33ff,
+        0 0 8px #8000ff,
+        0 0 12px #8000ff;
+      animation: neonFlicker 2.5s infinite alternate;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes neonFlicker {
+      0%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 4px #ff33ff,
+          0 0 8px #ff33ff,
+          0 0 12px #8000ff,
+          0 0 20px #8000ff;
+      }
+      50% {
+        opacity: 0.8;
+        text-shadow:
+          0 0 6px #ff66ff,
+          0 0 10px #ff66ff,
+          0 0 16px #9933ff,
+          0 0 30px #9933ff;
+      }
+    }
+
+    /* Bio text */
+    .bio-text {
+      color: #ddd;
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 2px #8000ffcc);
+    }
+
+    /* Links container */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Neon link buttons */
+    .neon-link {
+      background: #330033;
+      color: #ff33ff;
+      padding: 0.6rem 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow:
+        0 0 5px #ff33ffaa,
+        0 0 15px #8000ffaa;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .neon-link:hover {
+      background: #ff33ff;
+      color: #111;
+      box-shadow:
+        0 0 15px #ff99ff,
+        0 0 30px #cc99ff,
+        0 0 40px #cc99ff;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    .footer-text {
+      font-size: 0.75rem;
+      color: #5555aa;
+      text-shadow: 0 0 3px #330033;
+      user-select: none;
+    }
+
+    /* Position & size for particles canvas */
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -1;
+      background: #0f0f0f;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="tsparticles"></div>
+
+  <div class="wrapper">
+    <div class="neon-glow" data-aos="zoom-in">
+      <div class="card-inner">
+        <img src="https://i.pravatar.cc/100" alt="Profile Picture" class="profile-pic" />
+        <h2 class="neon-text">Neon style</h2>
+        <p class="bio-text">Vibrant colors with glowing effects</p>
+
+        <div class="links">
+          <a href="#" class="neon-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="#" class="neon-link" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="#" class="neon-link" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        </div>
+
+        <div class="footer-text">
+          Made with ❤️ by BioWizard
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      background: {
+        color: "#0f0f0f"
+      },
+      particles: {
+        number: {
+          value: 80,
+          density: { enable: true, value_area: 700 }
+        },
+        color: {
+          value: ["#ff33ff", "#8000ff", "#33ffff"]
+        },
+        shape: {
+          type: "circle"
+        },
+        opacity: {
+          value: 0.6,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: {
+          value: 3,
+          random: { enable: true, minimumValue: 1 }
+        },
+        move: {
+          enable: true,
+          speed: 1.5,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: "out",
+          attract: { enable: false }
+        },
+        links: {
+          enable: false
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+</body>
+</html>
