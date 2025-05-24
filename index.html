@@ -1,133 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Your Unique Bio Page</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-    }
-    .cta-button {
-      @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300;
-    }
-    .template-card:hover {
-      transform: scale(1.05);
-      transition: transform 0.3s;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Your Unique Bio Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .template-card {
+            transition: all 0.3s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        #tsparticles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .template-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            /* 4:3 Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .template-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .templates-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+    </style>
 </head>
+
 <body class="bg-gray-950 text-white">
-  <!-- Navigation Bar -->
-  <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/10 shadow-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <h1 class="font-bold text-xl">Bio Page</h1>
-      <nav class="space-x-4">
-        <a href="#about" class="hover:underline">About</a>
-        <a href="#features" class="hover:underline">Features</a>
-        <a href="#templates" class="hover:underline">Templates</a>
-        <a href="#form" class="hover:underline">Get Yours</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/10 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <h1 class="font-bold text-xl">BioWizard</h1>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-    <div id="tsparticles" class="absolute inset-0 -z-10"></div>
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-4" data-aos="zoom-in">Create Your Unique Bio Page</h1>
-    <p class="text-lg md:text-xl mb-6" data-aos="fade-up">Animated, aesthetic, and permanent for just ₹399</p>
-    <a href="#form" class="cta-button" data-aos="fade-up">Get Yours for ₹399</a>
-  </section>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav space-x-4 hidden md:flex">
+                <a href="#about" class="hover:underline">About</a>
+                <a href="#features" class="hover:underline">Features</a>
+                <a href="#templates" class="hover:underline">Templates</a>
+                <a href="#form" class="hover:underline">Get Yours</a>
+            </nav>
 
-  <!-- About Section -->
-  <section class="px-6 py-16 max-w-4xl mx-auto" id="about" data-aos="fade-up">
-    <h2 class="text-4xl font-bold mb-4">About</h2>
-    <p class="text-lg leading-relaxed">We help creators, influencers, and freelancers showcase their identity through a beautiful, animated, and unique bio page. Hosted on GitHub, live forever, without monthly fees.</p>
-  </section>
+            <!-- Mobile Hamburger Button -->
+            <button class="hamburger md:hidden focus:outline-none" id="hamburger">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
 
-  <!-- Features Section -->
-  <section class="bg-gray-900 px-6 py-16" id="features" data-aos="fade-up">
-    <h2 class="text-4xl font-bold text-center mb-10">Features</h2>
-    <ul class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <li class="bg-gray-800 p-6 rounded-xl shadow-lg">✨ Fully responsive, animated UI</li>
-      <li class="bg-gray-800 p-6 rounded-xl shadow-lg">🔗 Custom URL via subdomain</li>
-      <li class="bg-gray-800 p-6 rounded-xl shadow-lg">🌐 GitHub hosted, live forever</li>
-    </ul>
-  </section>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about" class="hover:underline py-2 px-4">About</a>
+            <a href="#features" class="hover:underline py-2 px-4">Features</a>
+            <a href="#templates" class="hover:underline py-2 px-4">Templates</a>
+            <a href="#form" class="hover:underline py-2 px-4">Get Yours</a>
+        </div>
+    </header>
 
-  <!-- Templates Section -->
-  <section class="px-6 py-16" id="templates" data-aos="fade-up">
-    <h2 class="text-4xl font-bold text-center mb-10">Templates</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div class="template-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
-        <img src="template1.png" alt="Template 1 Preview" class="rounded mb-4" />
-        <h3 class="text-xl font-semibold">Neon Style</h3>
-        <a href="template1-preview.html" target="_blank" class="text-pink-400 underline">Preview</a>
-      </div>
-      <div class="template-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
-        <img src="template2.png" alt="Template 2 Preview" class="rounded mb-4" />
-        <h3 class="text-xl font-semibold">Aurora Style</h3>
-        <a href="template2-preview.html" target="_blank" class="text-pink-400 underline">Preview</a>
-      </div>
-      <div class="template-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
-        <img src="template3.png" alt="Template 3 Preview" class="rounded mb-4" />
-        <h3 class="text-xl font-semibold">Minimal Dark</h3>
-        <a href="template3-preview.html" target="_blank" class="text-pink-400 underline">Preview</a>
-      </div>
-    </div>
-  </section>
+    <!-- Hero Section with Particles -->
+    <section class="relative min-h-screen overflow-hidden flex items-center justify-center"
+        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div id="tsparticles"></div>
+        <div class="hero-content text-center px-4 max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6" data-aos="zoom-in">
+                Create Your Unique Bio Page
+            </h1>
+            <p class="text-lg md:text-xl mb-8" data-aos="fade-up" data-aos-delay="100">
+                Animated, aesthetic, and permanent for just ₹399
+            </p>
+            <a href="#form"
+                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-8 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 inline-block text-lg font-semibold"
+                data-aos="fade-up" data-aos-delay="200">
+                Get Yours for ₹399
+            </a>
+        </div>
+    </section>
 
-  <!-- Pricing Section -->
-  <section class="bg-gray-900 px-6 py-16 text-center" data-aos="fade-up">
-    <h2 class="text-4xl font-bold mb-6">Pricing</h2>
-    <p class="text-2xl">Only ₹399 for lifetime hosting and delivery</p>
-    <p class="text-md mt-2">Secure delivery within 24 hours</p>
-  </section>
+    <!-- About Section -->
+    <section class="px-6 py-16 max-w-4xl mx-auto" id="about" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">About</h2>
+        <p class="text-lg leading-relaxed">
+            We help creators, influencers, and freelancers showcase their identity
+            through a beautiful, animated, and unique bio page. Hosted on GitHub,
+            live forever, without monthly fees.
+        </p>
+    </section>
 
-  <!-- Form / CTA Section -->
-  <section class="px-6 py-16 max-w-xl mx-auto" id="form" data-aos="fade-up">
-    <h2 class="text-4xl font-bold text-center mb-8">Get Your Bio Page</h2>
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLScustomformURL/formResponse" target="_blank" class="space-y-4">
-      <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded-lg bg-gray-800 text-white" />
-      <textarea name="bio" placeholder="Short Bio" required class="w-full p-3 rounded-lg bg-gray-800 text-white"></textarea>
-      <input type="text" name="socials" placeholder="Social Media Links" required class="w-full p-3 rounded-lg bg-gray-800 text-white" />
-      <input type="text" name="username" placeholder="Preferred Username" required class="w-full p-3 rounded-lg bg-gray-800 text-white" />
-      <select name="template" class="w-full p-3 rounded-lg bg-gray-800 text-white">
-        <option value="template1">Neon Style</option>
-        <option value="template2">Aurora Style</option>
-        <option value="template3">Minimal Dark</option>
-      </select>
-      <button type="submit" class="cta-button w-full">Submit & Pay</button>
-    </form>
-  </section>
+    <!-- Features Section -->
+    <section class="bg-gray-900 px-6 py-16" id="features" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-center mb-10">Features</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <li class="bg-gray-800 p-6 rounded-xl shadow-lg">✨ Fully responsive, animated UI</li>
+            <li class="bg-gray-800 p-6 rounded-xl shadow-lg">💸 Affordable One-Time Price</li>
+            <li class="bg-gray-800 p-6 rounded-xl shadow-lg">🌐 GitHub hosted, live forever</li>
+            <li class="bg-gray-800 p-6 rounded-xl shadow-lg">🖼️ Multiple Templates</li>
+        </ul>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-950 px-6 py-10 text-center text-sm" data-aos="fade-up">
-    <p>Contact: <a href="mailto:karan@example.com" class="text-pink-400 underline">karan@example.com</a></p>
-    <p>Follow us: <a href="https://instagram.com/karanbio" class="text-pink-400 underline">@karanbio</a></p>
-    <small class="block mt-4">&copy; 2025 Karan’s Bio Pages. All rights reserved.</small>
-  </footer>
+    <!-- Templates Section -->
+    <section class="px-6 py-16 max-w-7xl mx-auto" id="templates" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-center mb-6">Templates</h2>
+        <p class="text-center text-gray-300 mb-12 max-w-3xl mx-auto">
+            Choose from our collection of beautifully designed templates. All templates are fully customizable to match
+            your brand.
+        </p>
 
-  <script>
-    AOS.init();
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: false },
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        move: { enable: true, speed: 1 }
-      }
-    });
-  </script>
+        <div class="templates-grid">
+            <!-- Template 1 -->
+            <div class="template-card bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="template-image-container">
+                    <img src="https://source.unsplash.com/random/800x600/?website,design" alt="Neon Style Template"
+                        class="template-image">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Neon Style</h3>
+                    <p class="text-gray-300 mb-4">Vibrant colors with glowing effects</p>
+                    <a href="template1-preview.html" target="_blank"
+                        class="inline-block bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        Preview
+                    </a>
+                </div>
+            </div>
+
+            <!-- Template 2 -->
+            <div class="template-card bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="template-image-container">
+                    <img src="https://source.unsplash.com/random/800x600/?portfolio,design" alt="Aurora Style Template"
+                        class="template-image">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Aurora Style</h3>
+                    <p class="text-gray-300 mb-4">Northern lights inspired gradient effects</p>
+                    <a href="template2-preview.html" target="_blank"
+                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        Preview
+                    </a>
+                </div>
+            </div>
+
+            <!-- Template 3 -->
+            <div class="template-card bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="template-image-container">
+                    <img src="https://source.unsplash.com/random/800x600/?minimal,dark" alt="Minimal Dark Template"
+                        class="template-image">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Minimal Dark</h3>
+                    <p class="text-gray-300 mb-4">Clean, elegant and professional</p>
+                    <a href="template3-preview.html" target="_blank"
+                        class="inline-block bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors">
+                        Preview
+                    </a>
+                </div>
+            </div>
+
+            <!-- Template 4 -->
+            <div class="template-card bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="template-image-container">
+                    <img src="https://source.unsplash.com/random/800x600/?sunset,design" alt="Sunset Style Template"
+                        class="template-image">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Sunset Style</h3>
+                    <p class="text-gray-300 mb-4">Warm sunset color palette</p>
+                    <a href="template4-preview.html" target="_blank"
+                        class="inline-block bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        Preview
+                    </a>
+                </div>
+            </div>
+
+            <!-- Template 5 -->
+            <div class="template-card bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="template-image-container">
+                    <img src="https://source.unsplash.com/random/800x600/?pastel,design" alt="Pastel Style Template"
+                        class="template-image">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Pastel Style</h3>
+                    <p class="text-gray-300 mb-4">Soft pastel color scheme</p>
+                    <a href="template5-preview.html" target="_blank"
+                        class="inline-block bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        Preview
+                    </a>
+                </div>
+            </div>
+
+            <!-- Template 6 -->
+            <div class="template-card bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="template-image-container">
+                    <img src="https://source.unsplash.com/random/800x600/?ocean,design" alt="Ocean Style Template"
+                        class="template-image">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Ocean Style</h3>
+                    <p class="text-gray-300 mb-4">Cool blue and green tones</p>
+                    <a href="template6-preview.html" target="_blank"
+                        class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        Preview
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="bg-gray-900 px-6 py-16 text-center" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-6">Pricing</h2>
+        <p class="text-2xl">Only ₹399 for lifetime hosting and delivery</p>
+        <p class="text-md mt-2">Secure delivery within 24 hours</p>
+    </section>
+
+    <!-- Form / CTA Section -->
+    <section class="px-6 py-16 max-w-xl mx-auto" id="form" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-center mb-8">Get Your Bio Page</h2>
+        <form action="mailto:your-email@example.com" method="post" enctype="text/plain" class="space-y-4">
+            <input type="hidden" name="subject" value="BioPage Request" />
+            <input type="text" name="name" placeholder="Your Name" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" />
+            <textarea name="bio" placeholder="Short Bio" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 h-32"></textarea>
+            <input type="text" name="socials" placeholder="Social Media Links (comma separated)" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" />
+            <input type="text" name="username" placeholder="Preferred Username" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" />
+            <select name="template"
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500">
+                <option value="" disabled selected>Select a template</option>
+                <option value="Neon Style">Neon Style</option>
+                <option value="Aurora Style">Aurora Style</option>
+                <option value="Minimal Dark">Minimal Dark</option>
+            </select>
+            <button type="submit"
+                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300 w-full font-semibold">
+                Submit &amp; Pay
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 px-6 py-10 text-center text-sm" data-aos="fade-up">
+        <p>
+            Contact:
+            <a href="mailto:karan@example.com" class="text-pink-400 underline">karan@example.com</a>
+        </p>
+        <p>
+            Follow us:
+            <a href="https://instagram.com/karanbio" class="text-pink-400 underline">@karanbio</a>
+        </p>
+        <small class="block mt-4">&copy; 2025 Karan's Bio Pages. All rights reserved.</small>
+    </footer>
+
+    <!-- Rest of your sections remain the same -->
+    <!-- ... -->
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await tsParticles.load("tsparticles", {
+                fullScreen: {
+                    enable: false,
+                    zIndex: -1
+                },
+                particles: {
+                    number: {
+                        value: 100,
+                        density: {
+                            enable: true,
+                            area: 800
+                        }
+                    },
+                    color: {
+                        value: "#ffffff"
+                    },
+                    shape: {
+                        type: "circle"
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: true
+                    },
+                    size: {
+                        value: 3,
+                        random: {
+                            enable: true,
+                            minimumValue: 1
+                        }
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1.5,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        outModes: {
+                            default: "out"
+                        },
+                        attract: {
+                            enable: true,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detectsOn: "window",
+                    events: {
+                        onHover: {
+                            enable: true,
+                            mode: "bubble"
+                        },
+                        onClick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        bubble: {
+                            distance: 200,
+                            size: 6,
+                            duration: 2,
+                            opacity: 0.8
+                        },
+                        push: {
+                            quantity: 4
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
-</html>
 
+</html>
