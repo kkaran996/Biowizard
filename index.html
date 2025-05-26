@@ -292,7 +292,7 @@
     </section>
 
     <!-- Form / CTA Section -->
-    <section class="px-6 py-16 max-w-xl mx-auto" id="form" data-aos="fade-up">
+<!--     <section class="px-6 py-16 max-w-xl mx-auto" id="form" data-aos="fade-up">
         <h2 class="text-4xl font-bold text-center mb-8">Get Your Bio Page</h2>
         <form action="mailto:your-email@example.com" method="post" enctype="text/plain" class="space-y-4">
             <input type="hidden" name="subject" value="BioPage Request" />
@@ -316,7 +316,71 @@
                 Submit &amp; Pay
             </button>
         </form>
+    </section> -->
+
+        <!-- form section whatsapp -->
+    <section class="px-6 py-16 max-w-xl mx-auto" id="form" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-center mb-8">Get Your Bio Page</h2>
+        <form id="bioForm" class="space-y-4">
+            <input type="text" name="name" placeholder="Your Name" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" />
+            <textarea name="bio" placeholder="Short Bio" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 h-32"></textarea>
+            <input type="text" name="socials" placeholder="Social Media Links (comma separated)" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500" />
+            <select name="template" required
+                class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500">
+                <option value="" disabled selected>Select a template</option>
+                <option value="Neon Style">Neon Style</option>
+                <option value="Aurora Style">Aurora Style</option>
+                <option value="Minimal Dark">Minimal Dark</option>
+                <option value="Minimal Dark">Sunset Style</option>
+                <option value="Minimal Dark">Pastel Style</option>
+                <option value="Minimal Dark">Ocean Style</option>
+            </select>
+            <button type="submit"
+                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300 w-full font-semibold">
+                Submit &amp; Pay
+            </button>
+        </form>
     </section>
+
+    <script>
+        document.getElementById('bioForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // form submit default stop
+
+            const form = e.target;
+            const name = form.name.value.trim();
+            const bio = form.bio.value.trim();
+            const socials = form.socials.value.trim();
+            const template = form.template.value;
+
+            // Tumhara WhatsApp number (country code ke saath, bina +)
+            const whatsappNumber = "919315612481";
+
+            // Message format
+            const message = `
+*🚀 New Bio Page Order*
+ 
+Name: ${name}
+ 
+Bio: ${bio}
+ 
+Socials: ${socials}
+ 
+Template: ${template}
+`;
+
+            // WhatsApp URL banao
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // WhatsApp open karo nayi tab mein
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+
+
+
 
     <!-- Footer -->
     <footer class="bg-gray-950 px-6 py-10 text-center text-sm" data-aos="fade-up">
