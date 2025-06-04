@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karan's BioPage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <link rel="icon" type="image/webp" href="/Biowizard/biopage/karan/karan.webp">
+  <style>
+    .shine-button {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine-button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: rotate(45deg);
+      animation: shine 2.5s infinite;
+    }
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen flex items-center justify-center font-sans relative overflow-hidden">
+
+  <!-- Particle Background -->
+  <div id="tsparticles" class="absolute inset-0 -z-10"></div>
+
+  <!-- Bio Card -->
+  <div class="w-full max-w-md bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-lg p-6 text-center border border-white/10">
+    
+    <!-- Profile -->
+    <img src="/Biowizard/biopage/karan/karan.webp" alt="Karan" class="w-24 h-24 mx-auto rounded-full border-4 border-white shadow-md" />
+    
+    <!-- Name -->
+    <h1 class="text-3xl font-bold mt-4">Karan</h1>
+    
+    <!-- Bio -->
+    <p class="text-white/70 mt-3 px-2">
+      Hey everyone! I’m Karan from India 🇮🇳 — a high schooler, Developer | Designer | Editor | Anime Lover, passionate about tech, fitness 💪 & building cool web stuff ✨. Let’s connect! 🚀
+    </p>
+    
+    <!-- Link Buttons -->
+    <div class="mt-6 flex flex-col gap-3 text-sm px-4">
+      <a href="https://karanx.kesug.com" target="_blank" class="shine-button bg-zinc-800 border border-white/20 text-white font-medium py-3 px-4 rounded-xl hover:scale-105 transition flex items-center justify-between">
+        <span>My portfolio 🚀</span>
+        <span class="text-white/60 text-xs">karanx.kesug.com</span>
+      </a>
+      <a href="https://www.youtube.com/@ltzkaran24" target="_blank" class="shine-button bg-zinc-800 border border-white/20 text-white font-medium py-3 px-4 rounded-xl hover:scale-105 transition flex items-center justify-between">
+        <span>My YouTube 📯</span>
+        <span class="text-white/60 text-xs">youtube.com/@ltzkaran24</span>
+      </a>
+      <a href="https://karanx.wuaze.com" target="_blank" class="shine-button bg-zinc-800 border border-white/20 text-white font-medium py-3 px-4 rounded-xl hover:scale-105 transition flex items-center justify-between">
+        <span>Mari Dukan 🧾 🛒</span>
+        <span class="text-white/60 text-xs">karanx.wuaze.com</span>
+      </a>
+      <a href="https://www.instagram.com/Bio_.Wizard/" target="_blank" class="shine-button bg-zinc-800 border border-white/20 text-white font-medium py-3 px-4 rounded-xl hover:scale-105 transition flex items-center justify-between">
+        <span>BioWizard 📋 ✨ 🎨</span>
+        <span class="text-white/60 text-xs">instagram.com/Bio_.Wizard</span>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <p class="text-xs mt-6 text-white/40">Made with ❤️ by Biowizard</p>
+  </div>
+
+  <!-- Particle Script -->
+  <script>
+    tsParticles.load("tsparticles", {
+      background: { color: "#000" },
+      fpsLimit: 60,
+      particles: {
+        color: { value: "#ffffff" },
+        links: { enable: true, color: "#ffffff", distance: 100, opacity: 0.3 },
+        move: { enable: true, speed: 1 },
+        size: { value: 2 },
+        number: { value: 70 },
+        opacity: { value: 0.3 }
+      },
+      interactivity: {
+        events: { onHover: { enable: true, mode: "repulse" } },
+        modes: { repulse: { distance: 70 } }
+      }
+    });
+  </script>
+
+</body>
+</html>
